@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment } from 'react';
 import HocApiComponent from '../hocApiComponent';
 import Disqualification from './disqualification';
 import LandingPage from './landingPage';
