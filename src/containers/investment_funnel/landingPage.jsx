@@ -42,7 +42,7 @@ function LandingPage({ funnelAction }) {
         <DropDown
           setState={setState}
           name={'investment_type'}
-          label={'Investment yype'}
+          label={'Investment type'}
           value={state['investment_type']}
           required={true}
           uniqueValues={['Bond', 'Stocks', 'Real Estate']}

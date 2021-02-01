@@ -12,7 +12,7 @@ function DropDown({ setState, name, label, value, required, uniqueValues }) {
       {label}
       <br />
       <select
-        // style={Style.select}
+        style={Style.select}
         name={name}
         value={value}
         required={required}

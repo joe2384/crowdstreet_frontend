@@ -4,10 +4,12 @@ import Disqualification from './disqualification';
 import LandingPage from './landingPage';
 import NewAccount from './newAccount';
 
-const Funnel = ({ data, funnelAction }) => {
+const Funnel = ({ data, funnelAction, loading }) => {
   return (
     <Fragment>
-      {data === '' ? (
+      {loading ? (
+        <div>...Loading</div>
+      ) : data === '' ? (
         <LandingPage funnelAction={funnelAction} />
       ) : data === 'disqualification' ? (
         <Disqualification />

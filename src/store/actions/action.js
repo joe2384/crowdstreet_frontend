@@ -1,11 +1,11 @@
 import restCall from '../../utils/fetch-util';
 import * as actionTypes from '../types/actionTypes';
 
-export const funnelAction = (url) => {
+export const funnelAction = (data) => {
   return async function (dispatch) {
     await restCall({
-      url: url,
-      method: 'get',
+      data,
+      startType: actionTypes.DATA_REQUEST_STARTED,
       successType: actionTypes.DATA_REQUEST_FULFILLED,
       errorType: actionTypes.DATA_REQUEST_ERROR,
       dispatch,
