@@ -84,7 +84,7 @@ function LandingPage({ funnelAction }) {
           required={true}
           pattern={'^[0-9]*$'}
           minLength={1}
-          maxLength={20}
+          maxLength={4}
         />
         <br />
         <br />
