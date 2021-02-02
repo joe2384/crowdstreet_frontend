@@ -24,6 +24,12 @@ export default (state = initialState, action) => {
         data: action.payload,
         loading: false,
       };
+    case actionTypes.RESET:
+      return {
+        ...state,
+        data: action.payload,
+        loading: false,
+      };
     default:
       return state;
   }

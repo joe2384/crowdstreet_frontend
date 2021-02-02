@@ -4,11 +4,26 @@ import DropDown from '../../components/form_fields/dropDown';
 
 function LandingPage({ funnelAction }) {
   const [state, setState] = useState({
-    investment: 0,
-    investment_type: '',
-    net_worth: 0,
-    income: 0,
-    credit_score: 0,
+    investment: {
+      value: 0,
+      error: false,
+    },
+    investment_type: {
+      value: '',
+      error: false,
+    },
+    net_worth: {
+      value: 0,
+      error: false,
+    },
+    income: {
+      value: 0,
+      error: false,
+    },
+    credit_score: {
+      value: 0,
+      error: false,
+    },
   });
 
   const submitHandler = (e) => {
@@ -16,12 +31,9 @@ function LandingPage({ funnelAction }) {
     funnelAction(state);
   };
 
-  const disabled =
-    state.investment > 0 &&
-    state.investment_type.length > 0 &&
-    state.net_worth > 0 &&
-    state.income > 0 &&
-    state.credit_score > 0;
+  const disableErrorCheck = Object.entries({ ...state }).filter(
+    ([key, val]) => val.value <= 0
+  );
 
   return (
     <Fragment>
@@ -31,11 +43,13 @@ function LandingPage({ funnelAction }) {
           type={'number'}
           name={'investment'}
           label={'Investment Amount'}
-          value={state['investment']}
+          value={state['investment'].value}
           required={true}
           pattern={'^[0-9]*$'}
           minLength={1}
           maxLength={20}
+          message={'Please enter a valid investment amount'}
+          error={state['investment'].error}
         />
         <br />
         <br />
@@ -43,7 +57,7 @@ function LandingPage({ funnelAction }) {
           setState={setState}
           name={'investment_type'}
           label={'Investment type'}
-          value={state['investment_type']}
+          value={state['investment_type'].value}
           required={true}
           uniqueValues={['Bond', 'Stocks', 'Real Estate']}
         />
@@ -54,11 +68,13 @@ function LandingPage({ funnelAction }) {
           type={'number'}
           name={'net_worth'}
           label={'Net Worth'}
-          value={state['net_worth']}
+          value={state['net_worth'].value}
           required={true}
           pattern={'^[0-9]*$'}
           minLength={1}
           maxLength={20}
+          message={'Please enter a valid net worth'}
+          error={state['net_worth'].error}
         />
         <br />
         <br />
@@ -67,11 +83,13 @@ function LandingPage({ funnelAction }) {
           type={'number'}
           name={'income'}
           label={'Yearly income'}
-          value={state['income']}
+          value={state['income'].value}
           required={true}
           pattern={'^[0-9]*$'}
           minLength={1}
           maxLength={20}
+          message={'Please enter a valid income'}
+          error={state['income'].error}
         />
         <br />
         <br />
@@ -80,15 +98,17 @@ function LandingPage({ funnelAction }) {
           type={'number'}
           name={'credit_score'}
           label={'Credit score'}
-          value={state['credit_score']}
+          value={state['credit_score'].value}
           required={true}
           pattern={'^[0-9]*$'}
           minLength={1}
           maxLength={4}
+          message={'Please enter a valid credit score'}
+          error={state['credit_score'].error}
         />
         <br />
         <br />
-        <input type="submit" disabled={!disabled} />
+        <input type="submit" disabled={disableErrorCheck.length > 0} />
       </form>
     </Fragment>
   );

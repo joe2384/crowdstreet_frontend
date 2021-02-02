@@ -12,3 +12,9 @@ export const funnelAction = (data) => {
     });
   };
 };
+
+export const resetAction = (data) => {
+  return async function (dispatch) {
+    dispatch({ type: actionTypes.RESET, payload: '' });
+  };
+};

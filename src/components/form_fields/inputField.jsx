@@ -9,9 +9,30 @@ function InputField({
   value,
   required,
   pattern,
-  minLength,
-  maxLength,
+  minLength = null,
+  maxLength = null,
+  password = null,
+  message = null,
+  error,
 }) {
+  const regexHandler = (e) => {
+    return e.target.value.match(pattern) === null;
+  };
+
+  const passwordHandler = (e) => {
+    return e.target.value !== password;
+  };
+
+  const onChangeHandler = (e) => {
+    let boolean = null;
+    if (name !== 'password_check') boolean = regexHandler(e);
+    if (name === 'password_check') boolean = passwordHandler(e);
+    setState((previousState) => ({
+      ...previousState,
+      [e.target.name]: { value: e.target.value, error: boolean },
+    }));
+  };
+
   return (
     <Fragment>
       <label>{label}</label>
@@ -21,16 +42,12 @@ function InputField({
         name={name}
         value={value}
         required={required}
-        pattern={pattern}
         minLength={minLength}
         maxLength={maxLength}
-        onChange={(e) =>
-          setState((previousState) => ({
-            ...previousState,
-            [e.target.name]: e.target.value,
-          }))
-        }
+        onChange={(e) => onChangeHandler(e)}
       />
+      <br />
+      {error && required && <span style={{ color: 'red' }}>{message}</span>}
     </Fragment>
   );
 }

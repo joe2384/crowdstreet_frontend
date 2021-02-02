@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
-import { funnelAction } from '../store/actions/action';
+import { funnelAction, resetAction } from '../store/actions/action';
 
 const mapStateToProps = (state) => {
   const { data, loading } = state.dataReducers;
@@ -15,6 +15,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       funnelAction: funnelAction,
+      resetAction: resetAction,
     },
     dispatch
   );

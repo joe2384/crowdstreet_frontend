@@ -4,7 +4,7 @@ import Disqualification from './disqualification';
 import LandingPage from './landingPage';
 import NewAccount from './newAccount';
 
-const Funnel = ({ data, funnelAction, loading }) => {
+const Funnel = ({ data, funnelAction, resetAction, loading }) => {
   return (
     <Fragment>
       {loading ? (
@@ -14,7 +14,7 @@ const Funnel = ({ data, funnelAction, loading }) => {
       ) : data === 'disqualification' ? (
         <Disqualification />
       ) : (
-        <NewAccount />
+        <NewAccount resetAction={resetAction} />
       )}
     </Fragment>
   );
