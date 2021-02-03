@@ -53,7 +53,7 @@ for any Investment Amount above $9,000,000.
 
 ## Demo
 
-<http://charter_take-home.surge.sh/>
+<http://crowdstreet_frontend.surge.sh/>
 
 ## Installation
 
