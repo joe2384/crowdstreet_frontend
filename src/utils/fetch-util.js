@@ -2,10 +2,15 @@ const applicationCheck = (data) =>
   new Promise((resolve, reject) => {
     const { investment, net_worth, income, credit_score } = data;
     const percentAmount = net_worth * 0.03;
-    if (investment && net_worth && income && credit_score) reject();
-    if (investment > income / 5) resolve({ data: 'disqualification' });
-    if (credit_score < 600) resolve({ data: 'disqualification' });
-    if (investment > percentAmount) resolve({ data: 'disqualification' });
+    if (investment >= 9000) reject({ message: 'Bad request' });
+    if (
+      (investment > income / 5) |
+      (credit_score < 600) |
+      (investment > percentAmount)
+    )
+      resolve({
+        data: "We are sorry but you don't meet the requirements to invest",
+      });
     resolve({ data: 'success' });
   });
 
@@ -19,6 +24,6 @@ export default function restCall(params) {
       dispatch({ type: successType, payload: resp.data });
     })
     .catch((error) => {
-      dispatch({ type: errorType, message: 'Lorum Ipsem is fine' });
+      dispatch({ type: errorType, payload: error.message });
     });
 }

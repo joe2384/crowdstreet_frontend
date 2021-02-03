@@ -2,14 +2,14 @@ import React, { Fragment, useState } from 'react';
 import InputField from '../../components/form_fields/inputField';
 import DropDown from '../../components/form_fields/dropDown';
 
-function LandingPage({ funnelAction }) {
+function LandingPage({ funnelAction, message }) {
   const [state, setState] = useState({
     investment: {
       value: 0,
       error: false,
     },
     investment_type: {
-      value: '',
+      value: 'bond',
       error: false,
     },
     net_worth: {
@@ -27,8 +27,16 @@ function LandingPage({ funnelAction }) {
   });
 
   const submitHandler = (e) => {
+    const newState = { ...state };
+    const stateObject = {
+      investment: newState['investment'].value,
+      investment_type: newState['investment_type'].value,
+      net_worth: newState['net_worth'].value,
+      income: newState['income'].value,
+      credit_score: newState['credit_score'].value,
+    };
     e.preventDefault();
-    funnelAction(state);
+    funnelAction(stateObject);
   };
 
   const disableErrorCheck = Object.entries({ ...state }).filter(
@@ -37,6 +45,9 @@ function LandingPage({ funnelAction }) {
 
   return (
     <Fragment>
+      {message && (
+        <div style={{ color: 'red', fontSize: '20px' }}>{message}</div>
+      )}
       <form onSubmit={(e) => submitHandler(e)}>
         <InputField
           setState={setState}
@@ -60,6 +71,8 @@ function LandingPage({ funnelAction }) {
           value={state['investment_type'].value}
           required={true}
           uniqueValues={['Bond', 'Stocks', 'Real Estate']}
+          message={'Please enter a valid investment type'}
+          error={state['investment_type'].error}
         />
         <br />
         <br />

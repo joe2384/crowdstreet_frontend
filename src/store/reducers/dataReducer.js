@@ -2,6 +2,7 @@ import * as actionTypes from '../types/actionTypes';
 
 const initialState = {
   data: '',
+  message: '',
   loading: false,
 };
 
@@ -21,7 +22,7 @@ export default (state = initialState, action) => {
     case actionTypes.DATA_REQUEST_ERROR:
       return {
         ...state,
-        data: action.payload,
+        message: action.payload,
         loading: false,
       };
     case actionTypes.RESET:

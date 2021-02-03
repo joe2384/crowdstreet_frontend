@@ -1,6 +1,15 @@
 import React, { Fragment } from 'react';
 
-function DropDown({ setState, name, label, value, required, uniqueValues }) {
+function DropDown({
+  setState,
+  name,
+  label,
+  value,
+  required,
+  uniqueValues,
+  error,
+  message,
+}) {
   const Style = {
     select: {
       width: ' 100px',
@@ -29,6 +38,7 @@ function DropDown({ setState, name, label, value, required, uniqueValues }) {
           </option>
         ))}
       </select>
+      {error && required && <span style={{ color: 'red' }}>{message}</span>}
     </Fragment>
   );
 }

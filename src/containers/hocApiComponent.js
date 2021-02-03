@@ -4,10 +4,11 @@ import { bindActionCreators, compose } from 'redux';
 import { funnelAction, resetAction } from '../store/actions/action';
 
 const mapStateToProps = (state) => {
-  const { data, loading } = state.dataReducers;
+  const { data, message, loading } = state.dataReducers;
   return {
     data,
     loading,
+    message,
   };
 };
 

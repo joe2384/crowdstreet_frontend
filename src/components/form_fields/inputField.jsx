@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import './field.css';
 
 function InputField({
   setState,
@@ -33,11 +32,21 @@ function InputField({
     }));
   };
 
+  const Styles = {
+    invalid: {
+      border: '2px solid red',
+    },
+    valid: {
+      border: '2px solid black',
+    },
+  };
+
   return (
     <Fragment>
       <label>{label}</label>
       <br />
       <input
+        style={error ? Styles.invalid : Styles.valid}
         type={type}
         name={name}
         value={value}
