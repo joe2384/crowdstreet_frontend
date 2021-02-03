@@ -9,7 +9,8 @@ const applicationCheck = (data) =>
       (investment > percentAmount)
     )
       resolve({
-        data: "We are sorry but you don't meet the requirements to invest",
+        data: 'disqualified',
+        message: "We are sorry but you don't meet the requirements to invest",
       });
     resolve({ data: 'success' });
   });
@@ -21,7 +22,10 @@ export default function restCall(params) {
   }
   return applicationCheck(data)
     .then((resp) => {
-      dispatch({ type: successType, payload: resp.data });
+      dispatch({
+        type: successType,
+        payload: { data: resp.data, message: resp.message },
+      });
     })
     .catch((error) => {
       dispatch({ type: errorType, payload: error.message });

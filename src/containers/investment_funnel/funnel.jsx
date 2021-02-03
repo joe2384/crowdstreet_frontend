@@ -11,8 +11,7 @@ const Funnel = ({ data, funnelAction, resetAction, loading, message }) => {
         <div>...Loading</div>
       ) : data === '' ? (
         <LandingPage funnelAction={funnelAction} message={message} />
-      ) : data ===
-        "We are sorry but you don't meet the requirements to invest" ? (
+      ) : data === 'disqualified' ? (
         <Disqualification message={data} />
       ) : (
         <NewAccount resetAction={resetAction} />

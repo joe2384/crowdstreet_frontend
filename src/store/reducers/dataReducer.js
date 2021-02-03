@@ -16,7 +16,8 @@ export default (state = initialState, action) => {
     case actionTypes.DATA_REQUEST_FULFILLED:
       return {
         ...state,
-        data: action.payload,
+        data: action.payload.data,
+        message: action.payload.message,
         loading: false,
       };
     case actionTypes.DATA_REQUEST_ERROR:
