@@ -1,7 +1,4 @@
 # Crowdstreet Take-Home
-> This take-home is an app to filter restaurants by state, genre, and attire. The app also uses an input field to search restaurants by name, city, and genre. The app has pagination to help keep table rows to no more than ten listings. This app features React, Typescript, Redux, Enzyme, and Jest.
-
-## Project features
 
 ## Landing Page
 * The initial page should show a simple form with inputs for the following field:
